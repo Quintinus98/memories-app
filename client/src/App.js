@@ -16,12 +16,10 @@ const App = () => {
   }, [dispatch])
   return ( 
     <Container maxWidth="lg">
-      <Paper elevation={3}>
-        <AppBar className="appBar" position="static" color="inherit">
-          <Typography  className="heading" variant="h2">Memories</Typography>
-          <img src={memories} className="image" alt="Memories" height={60} />
-        </AppBar>
-      </Paper>
+      <AppBar className="appBar" position="static" color="inherit">
+        <Typography  className="heading" variant="h2">Memories</Typography>
+        <img src={memories} className="image" alt="Memories" height={60} />
+      </AppBar>
       <Grow in>
         <Container>
           <Grid container justifyContent="space-between" alignItems={"stretch"} spacing={3}>
