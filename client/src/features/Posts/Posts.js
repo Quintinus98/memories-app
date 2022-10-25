@@ -15,7 +15,7 @@ const Posts = () => {
   const renderedposts = Object.values(posts).map((post) => {
     return (
       <Grid item xs={12} sm={6} key={post._id}>
-        <Post post={post} />
+        <Post id={post._id} post={post}/>
       </Grid>
     )
   })

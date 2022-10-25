@@ -1,5 +1,5 @@
-import React, { useEffect} from 'react';
-import { Container, AppBar, Typography, Grow, Grid, Paper } from '@mui/material';
+import React, { useState, useEffect} from 'react';
+import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { getPosts } from './features/Posts/postsSlice';

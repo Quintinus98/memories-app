@@ -4,6 +4,9 @@ import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { createPosts } from "../Posts/postsSlice";
 
+
+// Get the current Id of the post.
+
 const Form = () => {
 
   const [postData, setPostData ] = useState({
@@ -41,9 +44,7 @@ const Form = () => {
         <TextField name="tags" className="common" variant="standard" label="Tags" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value })} />
 
         <div className="fileInput">
-        {/* <Button variant="contained" mt={2} mb={2}> */}
           <FileBase type = 'file' multiple = {false} onDone = {({base64}) => setPostData({ ...postData, selectedFile: base64 })} />
-        {/* </Button> */}
         </div>
 
         <Button className="buttonSubmit" variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>

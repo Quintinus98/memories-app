@@ -14,9 +14,11 @@ import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { selectPostById } from "./postsSlice";
+import { useSelector } from "react-redux";
 
 
-const Post = ({ post }) => {
+const Post = ({ id, post }) => {
 
   const handlePost = ( msg ) => {
     const n = 30;
@@ -25,6 +27,11 @@ const Post = ({ post }) => {
       return msgStore.concat('...')
     }
     return msg
+  }
+
+  const handleEdit = ( postId ) => {
+    post = useSelector(state => selectPostById(state, postId))
+    return post
   }
 
 
@@ -37,7 +44,7 @@ const Post = ({ post }) => {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings" onClick={() => {}}>
+          <IconButton aria-label="edit" onClick={handleEdit(id)}>
             <MoreVertIcon />
           </IconButton>
         }
