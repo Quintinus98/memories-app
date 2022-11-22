@@ -21,9 +21,12 @@ export const createPosts = createAsyncThunk('posts/CREATE', async (post) => {
   }
 })
 
-export const updatePosts = createAsyncThunk('posts/UPDATE', async (id, post) => {
+export const updatePosts = createAsyncThunk('posts/UPDATE', async (post) => {
   try {
-    const { data } = await updatePost(id, post);
+    const _id = post._id;
+    delete post._id;
+    const postBody = post;
+    const { data } = await updatePost(_id, postBody);
     return data
   } catch (error) {
     console.log(error);
@@ -42,14 +45,11 @@ export const postsSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    UPDATE: {
-      reducer(state, action) {
-        const { id, post } = action.payload
-        state.entities[id] = { ...post }
-        // state.entities[id] = { ...state.entities[id], ...post}
-      },
-      prepare (id, post) {
-        return { payload: { id, post } }
+    UPDATE(state, action) {
+      const post = action.payload
+      const existingPost = state.posts.entities[post._id]
+      if (existingPost) {
+        existingPost = { ...post }
       }
     }
   },

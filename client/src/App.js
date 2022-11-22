@@ -1,39 +1,48 @@
-import React, { useState, useEffect} from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+// import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getPosts } from './features/Posts/postsSlice';
-import Posts from './features/Posts/Posts';
-import Form from './features/Form/Form';
-import memories from './assets/memories.png';
+import { PostsList }from './features/Posts/PostsList';
+import { SinglePostPage } from './features/Posts/SinglePostPage';
+import NavBar from './app/AppBar';
+import { AddPostForm } from './features/Form/AddPostForm';
+import { EditPostForm } from './features/Form/EditPostForm';
+
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom'
 
 const App = () => {
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getPosts())
   }, [dispatch])
-  return ( 
-    <Container maxWidth="lg">
-      <AppBar className="appBar" position="static" color="inherit">
-        <Typography  className="heading" variant="h2">Memories</Typography>
-        <img src={memories} className="image" alt="Memories" height={60} />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justifyContent="space-between" alignItems={"stretch"} spacing={3}>
-            <Grid item xs={12} sm={8}>
-              <Posts />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>    
-   );
-}
 
-export default App;
+
+  return (
+    <Router>
+      <NavBar />
+      <div className='App'>
+        <Routes>
+          {/* <Route exact path='/posts/:postId' component={SinglePostPage} /> */}
+          <Route path='/' element={<> <AddPostForm /> <PostsList /> </> } />
+          <Route path='/posts/:postId' element={<SinglePostPage />} />
+          <Route path='/editPost/:postId' element={<EditPostForm />} />
+        </Routes>
+      </div>
+    </Router>
+   );
+  }
+  
+  export default App;
+
+{/* <Route exact path='/' render = { () => ( 
+            <React.Fragment>
+              <AddPostForm />
+              <PostsList />
+            </React.Fragment> )}  */}
