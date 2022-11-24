@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { fetchPosts, createPost, updatePost } from './postAPI';
 
-
 // Async Thunk functions
 export const getPosts = createAsyncThunk('posts/FETCH_ALL', async () => {
   try {
     const { data } = await fetchPosts();
-    return data
+    return data;
   } catch (error) {
     console.log(error.message);
   }
@@ -27,7 +26,7 @@ export const updatePosts = createAsyncThunk('posts/UPDATE', async (post) => {
     delete post._id;
     const postBody = post;
     const { data } = await updatePost(_id, postBody);
-    return data
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -47,9 +46,9 @@ export const postsSlice = createSlice({
   reducers: {
     UPDATE(state, action) {
       const post = action.payload
-      const existingPost = state.posts.entities[post._id]
+      let existingPost = state.posts.entities[post._id]
       if (existingPost) {
-        existingPost = { ...post }
+        existingPost = { ...existingPost, ...post }
       }
     }
   },

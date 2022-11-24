@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { selectPostById, updatePosts } from "../Posts/postsSlice";
+import { getPosts, selectPostById, updatePosts } from "../Posts/postsSlice";
 import { Typography, TextField, Button } from "@mui/material";
 
 export const EditPostForm = () => {
@@ -18,9 +18,10 @@ export const EditPostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updatePosts({_id: postId, ...postEdit}));
+    await dispatch(updatePosts({_id: postId, ...postEdit})).unwrap();
+    dispatch(getPosts());
     clear();
     navigate(`/posts/${postId}`);
   };

@@ -4,10 +4,6 @@ import axios from 'axios'
 const url = 'http://localhost:5000/posts'
 
 export const fetchPosts = () => axios.get(url)
+export const fetchSinglePost = (postId) => axios.get(url, postId);
 export const createPost = (newPost) => axios.post(url, newPost)
-// export const updatePost = (id, post) => axios.patch(`${url}/${id}`, post)
-export async function updatePost (id, updatedPost) {
-  await axios.patch(`${url}/${id}`, JSON.stringify(updatedPost), {
-    headers: { 'Content-Type': 'application/json' }
-  })
-}
+export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost)

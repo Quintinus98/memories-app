@@ -15,8 +15,6 @@ import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-// import { selectPostById } from "./postsSlice";
-// import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 
