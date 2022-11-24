@@ -56,3 +56,6 @@ npm start
 ```sh
 npm run start
 ```
+
+### File Upload
+View this link on how to get started [here](https://kris101.medium.com/react-file-upload-the-easy-way-with-nodejs-e94c5e81fb8)
